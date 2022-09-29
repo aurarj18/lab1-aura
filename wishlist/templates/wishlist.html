@@ -1,25 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{Aura}}</p>
-
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for barang in list_barang %}
-    <tr>
-        <th>{{barang.nama_barang}}</th>
-        <th>{{barang.harga_barang}}</th>
-        <th>{{barang.deskripsi}}</th>
-    </tr>
-{% endfor %}
-</table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
-
+{% comment %} <h5>Nama: </h5>
+<b>{{nama}}</b> {% endcomment %}
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light px-5" style="background-color: #A686C6;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hello, {{nama}}!</a>   
+      <button class="btn btn-danger" style="background-color: #CFA7070;" type="submit" onclick="location.href=`{% url 'wishlist:logout' %}`">Logout</button>
+    </form>
+  </div>
+</nav>
+    <div class="mt-3 px-5">
+        <h3>Daftar Wishlist</h3>
+    </div>
+    <div class="mt-3 px-5" >
+    <table class="table">
+        <tr>
+            <th scope="col">Nama Barang</th>
+            <th scope="col">Harga Barang</th>
+            <th scope="col">Deskripsi</th>
+        </tr>
+        {% for barang in list_barang %}
+        <tr>
+            <th scope="row">{{barang.nama_barang}}</th>
+            <th class="font-weight-light" scope="row">{{barang.harga_barang}}</th>
+            <th class="font-weight-light" scope="row">{{barang.deskripsi}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <h5> Sesi terakhir login: {{ last_login }} </h5>
+    </div>
+    <footer class="fixed-bottom" style="background-color: #A686C6;">Sesi terakhir login: {{ last_login }}</footer>
+</div>
 {% endblock content %}
